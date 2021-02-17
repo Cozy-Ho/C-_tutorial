@@ -1,0 +1,15 @@
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/bin/Debug/net5.0/HelloWorld.deps.json
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/bin/Debug/net5.0/HelloWorld.runtimeconfig.json
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/bin/Debug/net5.0/HelloWorld.runtimeconfig.dev.json
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/bin/Debug/net5.0/HelloWorld.dll
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/bin/Debug/net5.0/ref/HelloWorld.dll
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/bin/Debug/net5.0/HelloWorld.pdb
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/obj/Debug/net5.0/HelloWorld.csprojAssemblyReference.cache
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/obj/Debug/net5.0/HelloWorld.GeneratedMSBuildEditorConfig.editorconfig
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/obj/Debug/net5.0/HelloWorld.AssemblyInfoInputs.cache
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/obj/Debug/net5.0/HelloWorld.AssemblyInfo.cs
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/obj/Debug/net5.0/HelloWorld.csproj.CoreCompileInputs.cache
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/obj/Debug/net5.0/HelloWorld.dll
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/obj/Debug/net5.0/ref/HelloWorld.dll
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/obj/Debug/net5.0/HelloWorld.pdb
+/Users/v13205/git/Csharp_tutorial/helloworld/HelloWorld/obj/Debug/net5.0/HelloWorld.genruntimeconfig.cache
