@@ -15,6 +15,7 @@ using System.Diagnostics;
 using Amazon.DynamoDBv2.DataModel;
 using System.Threading;
 using ConvertLogic;
+using DotNetEnv;
 
 namespace migration
 {
@@ -34,8 +35,8 @@ namespace migration
     }
     class migration
     {
-        private static readonly String key = "";
-        private static readonly String s_key = "";
+        private static String key = "";
+        private static String s_key = "";
         private static AmazonDynamoDBClient client = new AmazonDynamoDBClient(key, s_key, RegionEndpoint.APNortheast2);
         private static string tableName = "test02-movie5";
 
@@ -138,6 +139,8 @@ namespace migration
 
         private static void CreateExampleTable()
         {
+            DotNetEnv.Env.Load();
+            AmazonDynamoDBClient client = new AmazonDynamoDBClient(DotNetEnv.Env.GetString("KEY"), DotNetEnv.Env.GetString("SECRETE_KEY"), RegionEndpoint.APNortheast2);
             Console.WriteLine("\n*** Creating table ***");
             var request = new CreateTableRequest
             {
@@ -191,6 +194,8 @@ namespace migration
 
         private static void DeleteTable()
         {
+            DotNetEnv.Env.Load();
+            AmazonDynamoDBClient client = new AmazonDynamoDBClient(DotNetEnv.Env.GetString("KEY"), DotNetEnv.Env.GetString("SECRETE_KEY"), RegionEndpoint.APNortheast2);
             Console.WriteLine("=====================================");
             Console.WriteLine("\n*** Deleting table ***");
             var request = new DeleteTableRequest
@@ -206,6 +211,8 @@ namespace migration
 
         private static void WaitUntilTableReady(string tableName)
         {
+            DotNetEnv.Env.Load();
+            AmazonDynamoDBClient client = new AmazonDynamoDBClient(DotNetEnv.Env.GetString("KEY"), DotNetEnv.Env.GetString("SECRETE_KEY"), RegionEndpoint.APNortheast2);
             string status = null;
             // Let us wait until table is created. Call DescribeTable.
             do
@@ -289,6 +296,8 @@ namespace migration
         }
         private static void Export(String filename)
         {
+            DotNetEnv.Env.Load();
+            AmazonDynamoDBClient client = new AmazonDynamoDBClient(DotNetEnv.Env.GetString("KEY"), DotNetEnv.Env.GetString("SECRETE_KEY"), RegionEndpoint.APNortheast2);
             Table ThreadTable = Table.LoadTable(client, tableName);
 
             ScanFilter scanFilter = new ScanFilter();
@@ -331,6 +340,8 @@ namespace migration
 
         private static void Import(String filename)
         {
+            DotNetEnv.Env.Load();
+            AmazonDynamoDBClient client = new AmazonDynamoDBClient(DotNetEnv.Env.GetString("KEY"), DotNetEnv.Env.GetString("SECRETE_KEY"), RegionEndpoint.APNortheast2);
             var r = File.ReadAllText(filename + @".json");
             JArray movies = JArray.Parse(r);
 

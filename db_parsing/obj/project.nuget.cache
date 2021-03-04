@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "dgSpecHash": "OzPW33WMWHAWFKerO1pgDjkIA7to7ybtdPjSoaamBYMPlrU5HBaBZqrGWr+GWp28Y1PMQman3yzwkB3Fcq584Q==",
+  "success": true,
+  "projectFilePath": "/Users/v13205/git/Csharp_tutorial/db_parsing/db_parsing.csproj",
+  "expectedPackageFiles": [
+    "/Users/v13205/.nuget/packages/dbfdatareader/0.7.0/dbfdatareader.0.7.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.data.common/4.3.0/system.data.common.4.3.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.globalization/4.3.0/system.globalization.4.3.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.io/4.3.0/system.io.4.3.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.reflection/4.3.0/system.reflection.4.3.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.reflection.primitives/4.3.0/system.reflection.primitives.4.3.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.resources.resourcemanager/4.3.0/system.resources.resourcemanager.4.3.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.runtime.extensions/4.3.0/system.runtime.extensions.4.3.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.text.encoding/4.3.0/system.text.encoding.4.3.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.text.encoding.codepages/5.0.0/system.text.encoding.codepages.5.0.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.text.regularexpressions/4.3.0/system.text.regularexpressions.4.3.0.nupkg.sha512",
+    "/Users/v13205/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}

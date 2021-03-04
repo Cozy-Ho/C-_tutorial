@@ -4,9 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK" Version="2.3.55.2"/>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0"/>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3"/>
+    <PackageReference Include="DbfDataReader" Version="0.7.0"/>
     <PackageReference Include="DotNetEnv" Version="2.1.1"/>
   </ItemGroup>
 </Project>

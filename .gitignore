@@ -2,6 +2,9 @@
 *.d
 movie*
 
+.env
+.DS_Store
+
 Debug
 
 # Compiled Object files
