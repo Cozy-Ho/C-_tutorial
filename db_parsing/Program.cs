@@ -2,6 +2,7 @@
 using System.IO;
 using DbfDataReader;
 using System.Text;
+using MySql.Data.MySqlClient;
 
 namespace db_parsing
 {
@@ -10,6 +11,13 @@ namespace db_parsing
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            // dbf_read();
+            // createTable();
+            // insertDB();
+            // search();
+        }
+        static void dbf_read()
+        {
             var skipDeleted = true;
 
             var dbfPath = "./sample.dbf";
@@ -41,6 +49,85 @@ namespace db_parsing
                         // var obj = dbfValue.GetValue();
                     }
                 }
+            }
+        }
+        static void createTable()
+        {
+            try
+            {
+                string strConn = "Server=localhost;Database=sample;Uid=root;Pwd=test;";
+                MySqlConnection conn = new MySqlConnection(strConn);
+                conn.Open();
+
+                String insertQuery = "create table test02(dumy INT(6), title VARCHAR(20), score INT(3), descr VARCHAR(50), watched BOOL)";
+                MySqlCommand command = new MySqlCommand(insertQuery, conn);
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("table 생성 실패");
+                }
+                else
+                {
+                    Console.WriteLine("table 생성 성공");
+                }
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+        static void insertDB()
+        {
+            try
+            {
+                string strConn = "Server=localhost;Database=sample;Uid=root;Pwd=test;";
+                MySqlConnection conn = new MySqlConnection(strConn);
+                conn.Open();
+
+                String insertQuery = "INSERT INTO test02(dumy,title,score) VALUES(1,'test', 100)";
+                MySqlCommand command = new MySqlCommand(insertQuery, conn);
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("인서트 성공");
+                }
+                else
+                {
+                    Console.WriteLine("인서트 실패");
+                }
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+        static void search()
+        {
+            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=sample;Uid=root;Pwd=test"))
+            {
+                try//예외 처리
+                {
+                    connection.Open();
+                    string sql = "SELECT * FROM test02";
+
+                    //ExecuteReader를 이용하여
+                    //연결 모드로 데이타 가져오기
+                    MySqlCommand cmd = new MySqlCommand(sql, connection);
+                    MySqlDataReader table = cmd.ExecuteReader();
+
+                    while (table.Read())
+                    {
+                        Console.WriteLine("{0} {1} {2}", table["dumy"], table["title"], table["score"]);
+                    }
+                    table.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("실패");
+                    Console.WriteLine(ex.ToString());
+                }
+
             }
         }
     }
