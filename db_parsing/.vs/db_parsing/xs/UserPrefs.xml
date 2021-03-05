@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{99531BC5-D833-4FCD-AC3B-C08BACCB2B9E}|Default">
+  <MonoDevelop.Ide.ItemProperties.db__parsing PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="docker-compose.yaml">
+    <Files>
+      <File FileName="Program.cs" Line="27" Column="1" />
+      <File FileName="docker-compose.yaml" Line="16" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="db_parsing" expanded="True">
+            <Node name="db_parsing" expanded="True">
+              <Node name="DB" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

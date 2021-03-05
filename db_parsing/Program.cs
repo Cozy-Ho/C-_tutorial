@@ -3,6 +3,8 @@ using System.IO;
 using DbfDataReader;
 using System.Text;
 using MySql.Data.MySqlClient;
+using System.Data;
+using System.Data.OleDb;
 
 namespace db_parsing
 {
@@ -11,13 +13,29 @@ namespace db_parsing
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            // dbf_read();
+            dbf_read();
             // createTable();
             // insertDB();
-            // search();
+            //search();
         }
         static void dbf_read()
         {
+            /**
+            string strConn = "Provider=Microsoft.Jet.OLEDB.4.0;"
+                   + @"Data Source=./sample.dbf;";
+            OleDbConnection conn = new OleDbConnection(strConn);
+
+            conn.Open();
+
+            Console.WriteLine("Database = \t\t" + conn.Database);
+            Console.WriteLine("DataSource = \t\t" + conn.DataSource);
+            Console.WriteLine("DataServerVersion = \t" + conn.ServerVersion);
+            Console.WriteLine("State = \t\t" + conn.State);
+            conn.Close();
+            Console.WriteLine("State = \t\t" + conn.State);
+            Console.ReadLine();
+            */
+            //
             var skipDeleted = true;
 
             var dbfPath = "./sample.dbf";
@@ -34,18 +52,19 @@ namespace db_parsing
 
                     foreach (var dbfValue in dbfRecord.Values)
                     {
-                        // Console.WriteLine(dbfValue.GetType());
-                        if (dbfValue.GetType() == typeof(DbfDataReader.DbfValueMemo))
-                        {
-                            var obj = dbfValue.GetValue();
-                            Console.WriteLine(obj);
-                        }
-                        else
-                        {
-                            var stringValue = dbfValue.ToString();
-                            Console.WriteLine(stringValue);
+                        Console.WriteLine(dbfValue.GetType());
+                        // if (dbfValue.GetType() == typeof(DbfDataReader.DbfValueMemo))
+                        // {
+                        //     // var obj = dbfValue.GetValue();
+                        //     // Console.WriteLine(obj);
+                        //     Console.WriteLine(dbfValue.GetType());
+                        // }
+                        // else
+                        // {
+                        //     var stringValue = dbfValue.ToString();
+                        //     Console.WriteLine(stringValue);
 
-                        }
+                        // }
                         // var obj = dbfValue.GetValue();
                     }
                 }
@@ -88,11 +107,11 @@ namespace db_parsing
                 MySqlCommand command = new MySqlCommand(insertQuery, conn);
                 if (command.ExecuteNonQuery() == 1)
                 {
-                    Console.WriteLine("인서트 성공");
+                    Console.WriteLine("insert 성공");
                 }
                 else
                 {
-                    Console.WriteLine("인서트 실패");
+                    Console.WriteLine("insert 실패");
                 }
             }
 
@@ -105,13 +124,13 @@ namespace db_parsing
         {
             using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=sample;Uid=root;Pwd=test"))
             {
-                try//예외 처리
+                try
                 {
                     connection.Open();
                     string sql = "SELECT * FROM test02";
 
                     //ExecuteReader를 이용하여
-                    //연결 모드로 데이타 가져오기
+                    //연결 모드로 데이터 가져오기
                     MySqlCommand cmd = new MySqlCommand(sql, connection);
                     MySqlDataReader table = cmd.ExecuteReader();
 

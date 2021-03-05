@@ -4,8 +4,18 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="DbfDataReader" Version="0.7.0"/>
-    <PackageReference Include="DotNetEnv" Version="2.1.1"/>
-    <PackageReference Include="MySqlClient" Version="5.4.2"/>
+    <PackageReference Include="DbfDataReader" Version="0.7.0" />
+    <PackageReference Include="DotNetEnv" Version="2.1.1" />
+    <PackageReference Include="MySqlClient" Version="5.4.2" />
+    <PackageReference Include="System.Data.OleDb" Version="5.0.0" />
   </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <DotNetNamingPolicy ResourceNamePolicy="FileFormatDefault" DirectoryNamespaceAssociation="PrefixedHierarchical" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>
