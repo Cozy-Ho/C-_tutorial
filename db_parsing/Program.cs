@@ -1,9 +1,6 @@
 ﻿using System;
 using System.IO;
 
-using DbfDataReader;
-//using dBASE.NET;
-
 using System.Text;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Linq;
@@ -20,8 +17,9 @@ namespace db_parsing
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var dbfPath = "../../../sample3.dbf";
-            exportjson.Dbf2Json(dbfPath);
+            var dbfPath = "./sample3.dbf";
+            // exportjson.Dbf2Json(dbfPath);
+            exportjson.Sql2Json("test02");
             // createTable();
             // insertDB();
             //search();
@@ -94,7 +92,7 @@ namespace db_parsing
 
                     string json_str = sqlDatoToJson(table);
                     Console.WriteLine(json_str);
-                    exportjson.Main(json_str);
+                    //exportjson.Main(json_str);
 
 
                     Console.WriteLine(data_arr);
