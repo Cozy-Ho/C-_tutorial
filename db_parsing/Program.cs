@@ -1,10 +1,17 @@
 ﻿using System;
 using System.IO;
+
 using DbfDataReader;
+//using dBASE.NET;
+
 using System.Text;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System.Data;
 using System.Data.OleDb;
+
+using ExportJson;
 
 namespace db_parsing
 {
@@ -13,63 +20,13 @@ namespace db_parsing
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            dbf_read();
+            var dbfPath = "../../../sample3.dbf";
+            exportjson.Dbf2Json(dbfPath);
             // createTable();
             // insertDB();
             //search();
         }
-        static void dbf_read()
-        {
-            /**
-            string strConn = "Provider=Microsoft.Jet.OLEDB.4.0;"
-                   + @"Data Source=./sample.dbf;";
-            OleDbConnection conn = new OleDbConnection(strConn);
 
-            conn.Open();
-
-            Console.WriteLine("Database = \t\t" + conn.Database);
-            Console.WriteLine("DataSource = \t\t" + conn.DataSource);
-            Console.WriteLine("DataServerVersion = \t" + conn.ServerVersion);
-            Console.WriteLine("State = \t\t" + conn.State);
-            conn.Close();
-            Console.WriteLine("State = \t\t" + conn.State);
-            Console.ReadLine();
-            */
-            //
-            var skipDeleted = true;
-
-            var dbfPath = "./sample.dbf";
-            using (var dbfTable = new DbfTable(dbfPath, Encoding.UTF8))
-            {
-                var dbfRecord = new DbfRecord(dbfTable);
-
-                while (dbfTable.Read(dbfRecord))
-                {
-                    if (skipDeleted && dbfRecord.IsDeleted)
-                    {
-                        continue;
-                    }
-
-                    foreach (var dbfValue in dbfRecord.Values)
-                    {
-                        Console.WriteLine(dbfValue.GetType());
-                        // if (dbfValue.GetType() == typeof(DbfDataReader.DbfValueMemo))
-                        // {
-                        //     // var obj = dbfValue.GetValue();
-                        //     // Console.WriteLine(obj);
-                        //     Console.WriteLine(dbfValue.GetType());
-                        // }
-                        // else
-                        // {
-                        //     var stringValue = dbfValue.ToString();
-                        //     Console.WriteLine(stringValue);
-
-                        // }
-                        // var obj = dbfValue.GetValue();
-                    }
-                }
-            }
-        }
         static void createTable()
         {
             try
@@ -133,12 +90,16 @@ namespace db_parsing
                     //연결 모드로 데이터 가져오기
                     MySqlCommand cmd = new MySqlCommand(sql, connection);
                     MySqlDataReader table = cmd.ExecuteReader();
+                    JArray data_arr = new JArray();
 
-                    while (table.Read())
-                    {
-                        Console.WriteLine("{0} {1} {2}", table["dumy"], table["title"], table["score"]);
-                    }
+                    string json_str = sqlDatoToJson(table);
+                    Console.WriteLine(json_str);
+                    exportjson.Main(json_str);
+
+
+                    Console.WriteLine(data_arr);
                     table.Close();
+
 
                 }
                 catch (Exception ex)
@@ -148,6 +109,14 @@ namespace db_parsing
                 }
 
             }
+        }
+        static String sqlDatoToJson(MySqlDataReader dataReader)
+        {
+            var dataTable = new DataTable();
+            dataTable.Load(dataReader);
+            string JSONString = string.Empty;
+            JSONString = JsonConvert.SerializeObject(dataTable);
+            return JSONString;
         }
     }
 }

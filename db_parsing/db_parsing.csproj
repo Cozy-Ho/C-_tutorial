@@ -4,10 +4,14 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="DbfDataReader" Version="0.7.0" />
     <PackageReference Include="DotNetEnv" Version="2.1.1" />
     <PackageReference Include="MySqlClient" Version="5.4.2" />
     <PackageReference Include="System.Data.OleDb" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="DbfDataReader" Version="0.7.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
