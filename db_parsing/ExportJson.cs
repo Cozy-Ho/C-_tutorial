@@ -55,7 +55,7 @@ namespace ExportJson
                     arr.Add(data);
                 }
 
-                StreamWriter fs = new StreamWriter(new FileStream(String.Format("../../../export.json"), FileMode.Create));
+                StreamWriter fs = new StreamWriter(new FileStream("../../../data/export.json", FileMode.Create));
                 fs.WriteLine(arr.ToString());
                 fs.Close();
 
