@@ -2,12 +2,14 @@
 *.d
 movie*
 
+####################
 export_data/
 DB/
 .vs/
-
 .env
 .DS_Store
+app.config
+####################
 
 Debug
 
