@@ -10,7 +10,8 @@ using Amazon.DynamoDBv2.Model;
 using Amazon.Runtime;
 using Amazon;
 using Amazon.DynamoDBv2.DataModel;
-using DotNetEnv;
+
+using System.Configuration;
 
 namespace Json2Dynamo
 {
@@ -31,10 +32,8 @@ namespace Json2Dynamo
 
     class json2dynamo
     {
-        public static void Import(String filename, String tableName)
+        public static void Import(String filename, String tableName, AmazonDynamoDBClient client)
         {
-            DotNetEnv.Env.Load();
-            AmazonDynamoDBClient client = new AmazonDynamoDBClient(DotNetEnv.Env.GetString("KEY"), DotNetEnv.Env.GetString("SECRETE_KEY"), RegionEndpoint.APNortheast2);
             var r = File.ReadAllText("./export_data/" + filename + @".json");
             JArray movies = JArray.Parse(r);
 
@@ -54,22 +53,22 @@ namespace Json2Dynamo
 
                     // Console.WriteLine("key >>>" + parsedProperty.Name);
                     // Console.WriteLine("val >>>" + parsedProperty.Value);
-                    string key = parsedProperty.Name;
+                    string d_key = parsedProperty.Name;
                     // Console.WriteLine(">>>" + key);
                     if (parsedProperty.Value.GetType() != typeof(JObject))
                     {
                         string value = (string)parsedProperty.Value;
-                        if (key == "dumy" || key == "score" || key == "s_score")
+                        if (d_key == "dumy" || d_key == "score" || d_key == "s_score")
                         {
-                            t_movie[key] = Int32.Parse(value);
+                            t_movie[d_key] = Int32.Parse(value);
                         }
                         else if (value == "false" || value == "true" || value == "False" || value == "True")
                         {
-                            t_movie[key] = bool.Parse(value);
+                            t_movie[d_key] = bool.Parse(value);
                         }
                         else
                         {
-                            t_movie[key] = value;
+                            t_movie[d_key] = value;
                         }
 
                     }
@@ -81,7 +80,7 @@ namespace Json2Dynamo
                             string map_val = (string)mapProperty.Value;
                             obj.Add(map_key, map_val);
                         }
-                        t_movie[key] = obj;
+                        t_movie[d_key] = obj;
                     }
                 }
                 batchWrite.AddDocumentToPut(t_movie);
@@ -98,11 +97,8 @@ namespace Json2Dynamo
             batchWrite.Execute();
             Console.WriteLine("DONE");
         }
-        public static void Import_low(String filename, String tableName)
+        public static void Import_low(String filename, String tableName, AmazonDynamoDBClient client)
         {
-            DotNetEnv.Env.Load();
-            AmazonDynamoDBClient client = new AmazonDynamoDBClient(DotNetEnv.Env.GetString("KEY"), DotNetEnv.Env.GetString("SECRETE_KEY"), RegionEndpoint.APNortheast2);
-
             List<WriteRequest> query = new List<WriteRequest>();
             using (StreamReader r = new StreamReader(filename + ".json"))
             {

@@ -13,7 +13,7 @@ namespace Mysql2Json
         public static void Sql2Json(String filename, String tableName)
         {
             // DB Setting;
-            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=sample;Uid=root;Pwd=test"))
+            using (MySqlConnection connection = new MySqlConnection("Server=172.26.50.73;Database=HANARO;Port=1433;Uid=sa;Pwd=qwe123!@#"))
             {
                 try
                 {

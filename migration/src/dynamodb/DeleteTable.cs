@@ -7,16 +7,15 @@ using Amazon.DynamoDBv2.Model;
 using Amazon.Runtime;
 using Amazon;
 using Amazon.DynamoDBv2.DataModel;
-using DotNetEnv;
+
+using System.Configuration;
 
 namespace DeleteTable
 {
     class deletetable
     {
-        public static void DeleteTable(String tableName)
+        public static void DeleteTable(String tableName, AmazonDynamoDBClient client)
         {
-            DotNetEnv.Env.Load();
-            AmazonDynamoDBClient client = new AmazonDynamoDBClient(DotNetEnv.Env.GetString("KEY"), DotNetEnv.Env.GetString("SECRETE_KEY"), RegionEndpoint.APNortheast2);
             Console.WriteLine("=====================================");
             Console.WriteLine("\n*** Deleting table ***");
             var request = new DeleteTableRequest

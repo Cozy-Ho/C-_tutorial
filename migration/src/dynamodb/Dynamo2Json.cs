@@ -10,7 +10,8 @@ using Amazon.DynamoDBv2.Model;
 using Amazon.Runtime;
 using Amazon;
 using Amazon.DynamoDBv2.DataModel;
-using DotNetEnv;
+
+using System.Configuration;
 
 namespace Dynamo2Json
 {
@@ -30,11 +31,9 @@ namespace Dynamo2Json
     }
     class dynamo2json
     {
-        private static AmazonDynamoDBClient client = new AmazonDynamoDBClient();
-        public static void Export(String filename, String tableName)
+        public static void Export(String filename, String tableName, AmazonDynamoDBClient client)
         {
-            DotNetEnv.Env.Load();
-            AmazonDynamoDBClient client = new AmazonDynamoDBClient(DotNetEnv.Env.GetString("KEY"), DotNetEnv.Env.GetString("SECRETE_KEY"), RegionEndpoint.APNortheast2);
+
             Table ThreadTable = Table.LoadTable(client, tableName);
 
             ScanFilter scanFilter = new ScanFilter();
@@ -74,9 +73,8 @@ namespace Dynamo2Json
             fs.Close();
             Console.WriteLine(tot_count + "개 데이터 저장 완료.");
         }
-        public static void Export_low(String filename, String tableName)
+        public static void Export_low(String filename, String tableName, AmazonDynamoDBClient client)
         {
-
             // Define scan conditions
             Dictionary<string, Condition> conditions = new Dictionary<string, Condition>();
 

@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using ConvertLogic;
 
+using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
@@ -20,10 +21,17 @@ using Dynamo2Json;
 using Json2Dynamo;
 using Mysql2Json;
 
+using System.Configuration;
+
 namespace migration
 {
     class migration
     {
+        static AppSettingsReader ar = new AppSettingsReader();
+
+            static String key = (string)ar.GetValue("AWS_KEY", typeof(string));
+            static String secrete_key = (string)ar.GetValue("AWS_SECRETE_KEY", typeof(string));
+            static AmazonDynamoDBClient client = new AmazonDynamoDBClient(key, secrete_key, RegionEndpoint.APNortheast2);
         static void Main(string[] args)
         {
             try
@@ -50,7 +58,7 @@ namespace migration
                                 Console.WriteLine("=====================================");
                                 Console.WriteLine("Input Tablename to CREATE");
                                 String tableName = Console.ReadLine();
-                                createtable.CreateExampleTable(tableName);
+                                createtable.CreateExampleTable(tableName, client);
                                 break;
                             }
                         case "2":
@@ -58,7 +66,7 @@ namespace migration
                                 Console.WriteLine("=====================================");
                                 Console.WriteLine("Input Tablename to DELETE");
                                 String tableName = Console.ReadLine();
-                                deletetable.DeleteTable(tableName);
+                                deletetable.DeleteTable(tableName, client);
                                 break;
                             }
                         case "3":
@@ -71,7 +79,7 @@ namespace migration
                                 String filename = Console.ReadLine();
                                 Stopwatch stopwatch = new Stopwatch();
                                 stopwatch.Start();
-                                dynamo2json.Export(filename, tableName);
+                                dynamo2json.Export(filename, tableName, client);
                                 // dynamo2json.Export_low(filename, tableName);
                                 stopwatch.Stop();
                                 Console.WriteLine("=====================================");
@@ -90,7 +98,7 @@ namespace migration
                                 Stopwatch stopwatch = new Stopwatch();
                                 stopwatch.Start();
                                 // json2dynamo.Import_low(filename, tableName);
-                                json2dynamo.Import(filename, tableName);
+                                json2dynamo.Import(filename, tableName, client);
                                 stopwatch.Stop();
                                 Console.WriteLine("=====================================");
                                 Console.WriteLine("실행시간 : " + (stopwatch.ElapsedMilliseconds / 1000).ToString() + "s");
