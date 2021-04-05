@@ -18,8 +18,8 @@ namespace db_parsing
         {
             Console.WriteLine("Hello World!");
             var dbfPath = "./sample3.dbf";
-            // exportjson.Dbf2Json(dbfPath);
-            exportjson.Sql2Json("test02");
+            exportjson.Dbf2Json(dbfPath);
+            // exportjson.Sql2Json("test02");
             // createTable();
             // insertDB();
             //search();
